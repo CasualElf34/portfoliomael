@@ -1,19 +1,183 @@
-        body {
-            background: #07071C;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .neon {
-            color: #fff;
-            font-size: 2.5rem;
-            font-family: 'Arial Black', Arial, sans-serif;
-            text-shadow:
-                0 0 5px #fff,
-                0 0 10px #0ff,
-                0 0 20px #0ff,
-                0 0 40px #0ff,
-                0 0 80px #0ff;
-            letter-spacing: 2px;
-        }
+/* Reset et styles de base */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; font-family: Arial, Helvetica, sans-serif; }
+body { background-color: #07071C; color: #ffffff; }
+
+.header { text-align: center; padding: 24px 0; }
+.header-left { color: aqua; margin: 0; }
+
+/* Grille d'artistes */
+#artists-grid {
+  display: grid;
+  /* Deux colonnes sur grand écran, une colonne sur petit écran */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+  align-items: start;
+}
+
+.artist-card {
+  background-color: #0b0d1a; /* plus sombre pour mieux voir le néon */
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  /* bordure légère avec un dégradé bleu très discret */
+  border: 1px solid rgba(100,150,255,0.12);
+  box-shadow: 0 6px 18px rgba(8,12,30,0.6);
+  position: relative;
+  overflow: visible;
+}
+
+/* Halo néon autour de la carte (utilise pseudo-élément) */
+.artist-card::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at center, rgba(80,150,255,0.12), rgba(40,90,255,0.06) 45%, transparent 60%);
+  z-index: -1;
+  filter: blur(6px);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.artist-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(20,60,120,0.45), 0 4px 10px rgba(0,0,0,0.6);
+}
+
+.artist-card:hover::before {
+  transform: scale(1.05);
+  opacity: 1;
+  filter: blur(10px);
+}
+
+.artist-card h2 { margin: 8px 0; font-size: 1.1rem; }
+
+/* Images à l'intérieur du bouton : on veut que l'image s'adapte à la carte */
+.artist-card button { background: transparent; border: none; padding: 0; cursor: pointer; }
+.artist-card button img { display: block; width: 100%; height: 180px; object-fit: cover; border-radius: 6px; }
+
+/* Animation pour faire tourner l'image dans la carte Formation */
+#artist-button-2 img {
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bouton secondaire (si tu veux un vrai bouton cliquable séparé) */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #23b2a4;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); background-color: #1b8f81; }
+
+/* Styles globaux pour images/éléments hors carte */
+img { max-width: 100%; height: auto; }
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .artist-card button img { height: 140px; }
+}
+
+@media (max-width: 700px) {
+  /* Basculer en une colonne sur tablettes / petits écrans */
+  #artists-grid { grid-template-columns: 1fr; }
+}
+
+/* Effet néon bleu nuit pour les titres */
+.header-left, .artist-card h2 {
+  color: #cfeeff; /* couleur principale claire */
+  /* plusieurs couches de text-shadow pour simuler un glow néon */
+  text-shadow:
+    0 0 4px rgba(140,200,255,0.9),
+    0 0 10px rgba(96,170,255,0.85),
+    0 0 20px rgba(50,120,255,0.75),
+    0 0 40px rgba(30,80,255,0.55);
+  font-weight: 700;
+  transition: text-shadow 0.3s ease, transform 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  animation: neonPulse 2.4s ease-in-out infinite alternate;
+}
+
+.header-left { font-size: 2rem; margin: 0 0 6px 0; }
+.artist-card h2 { font-size: 1.05rem; }
+
+.header-left:hover, .artist-card h2:hover {
+  text-shadow:
+    0 0 8px rgba(180,220,255,1),
+    0 0 18px rgba(110,190,255,0.95),
+    0 0 36px rgba(60,140,255,0.9),
+    0 0 80px rgba(30,90,255,0.75);
+  transform: translateY(-2px);
+}
+
+@keyframes neonPulse {
+  0% {
+    text-shadow:
+      0 0 2px rgba(140,200,255,0.6),
+      0 0 6px rgba(96,170,255,0.55),
+      0 0 12px rgba(50,120,255,0.45),
+      0 0 20px rgba(30,80,255,0.25);
+  }
+  100% {
+    text-shadow:
+      0 0 8px rgba(140,200,255,1),
+      0 0 18px rgba(96,170,255,0.95),
+      0 0 36px rgba(50,120,255,0.9),
+      0 0 60px rgba(30,80,255,0.65);
+  }
+}
+
+/* Respecter la préférence utilisateur pour réduire les animations */
+@media (prefers-reduced-motion: reduce) {
+  .header-left, .artist-card h2 { animation: none; transition: none; }
+}
+
+/* Animation pour cacher les autres boutons */
+.artist-card.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+/* Centrage et zoom du bouton sélectionné */
+.artist-card.selected {
+  position: fixed !important;
+  left: 50vw !important;
+  top: 50vh !important;
+  z-index: 4000;
+  width: 300px !important;
+  height: 220px !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) scale(1);
+  transition:
+    left 0.4s, top 0.4s, width 0.4s, height 0.4s, 
+    transform 0.7s cubic-bezier(.7,0,.3,1);
+  box-shadow: 0 0 60px 20px #1ad6ff55;
+}
+
+.artist-card.selected.zoom {
+  transform: translate(-50%, -50%) scale(8);
+  transition: transform 0.7s cubic-bezier(.7,0,.3,1);
+}
