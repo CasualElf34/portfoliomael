@@ -153,3 +153,31 @@ img { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
   .header-left, .artist-card h2 { animation: none; transition: none; }
 }
+
+/* Animation pour cacher les autres boutons */
+.artist-card.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+/* Centrage et zoom du bouton sélectionné */
+.artist-card.selected {
+  position: fixed !important;
+  left: 50vw !important;
+  top: 50vh !important;
+  z-index: 4000;
+  width: 300px !important;
+  height: 220px !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) scale(1);
+  transition:
+    left 0.4s, top 0.4s, width 0.4s, height 0.4s, 
+    transform 0.7s cubic-bezier(.7,0,.3,1);
+  box-shadow: 0 0 60px 20px #1ad6ff55;
+}
+
+.artist-card.selected.zoom {
+  transform: translate(-50%, -50%) scale(8);
+  transition: transform 0.7s cubic-bezier(.7,0,.3,1);
+}

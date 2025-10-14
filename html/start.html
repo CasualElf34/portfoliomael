@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1 id="welcome" class="neon"></h1>
+    <script>
+        const text = "Bienvenue sur le Portfolio de Guillaume Mael";
+        const el = document.getElementById('welcome');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                el.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 60); // Vitesse d'apparition des lettres
+            } else {
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1000); // Attente avant la redirection (1 seconde)
+            }
+        }
+
+        window.onload = typeWriter;
+    </script>
+
+    <link rel="stylesheet" href="../css/start.css">
+</body>
+</html>
