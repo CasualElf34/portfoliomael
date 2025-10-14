@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <h1 id="welcome" class="neon"></h1>
@@ -17,17 +17,15 @@
             if (i < text.length) {
                 el.textContent += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 60); // Vitesse d'apparition des lettres
+                setTimeout(typeWriter, 60);
             } else {
                 setTimeout(() => {
                     window.location.href = "html/start.html";
-                }, 1000); // Attente avant la redirection (1 seconde)
+                }, 1000);
             }
         }
 
         window.onload = typeWriter;
     </script>
-
-<link rel="stylesheet" href="css/index.css">
 </body>
 </html>
