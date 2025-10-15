@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Parcours</title>
+    <link rel="stylesheet" href="../css/parcour.css">
 </head>
 <body>
-    <h1>ze</h1>
-
-    <link rel="stylesheet" href="css/parcour.css">
+    <h1>Mon Parcours</h1>
+    <div class="parcours-container">
+        <div class="ligne-directrice" id="ligne-directrice"></div>
+        <div class="etape" style="left:10%;">
+            <img src="img/college.jpg" alt="Collège" class="etape-icon">
+            <div class="bulle">Collège Ray Charles<br>2015-2019<br>Découverte de l’informatique</div>
+        </div>
+        <div class="etape" style="left:40%;">
+            <img src="img/lycee.jpg" alt="Lycée" class="etape-icon">
+            <div class="bulle">Lycée Jules Ferry<br>2019-2022<br>Bac Pro ASSP, premiers projets web</div>
+        </div>
+        <div class="etape" style="left:75%;">
+            <img src="img/ecole.jpeg" alt="École" class="etape-icon">
+            <div class="bulle">Ynov Campus Montpellier<br>2022-2025<br>Développement, stages, alternance</div>
+        </div>
+        <img src="img/walkingman.gif" alt="Bonhomme qui marche" id="walkingman" class="walkingman">
+        <img src="img/walkingman2.gif" alt="Bonhomme qui revient" id="walkingman2" class="walkingman2" style="display:none;">
+    </div>
+    <script src="../js/parcour.js"></script>
 </body>
 </html>
