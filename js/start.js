@@ -39,9 +39,15 @@ document.querySelectorAll('.artist-card form').forEach(form => {
         }, 1200);
     });
 });
-window.addEventListener('pageshow', (event) => {
-  if (event.persisted) {
-    // Si la page revient du cache, on "recharge" le script
-    window.location.reload();
+window.addEventListener('pageshow', () => {
+  // remet tout à zéro
+  walkingman.style.left = '0px';
+  walkingman.style.opacity = '1';
+  const ligne = document.getElementById('ligne-directrice');
+  if (ligne) {
+    ligne.innerHTML = '';
+    creerPointillets();
+    afficherPointilletsUnParUn(avancerEtape);
   }
+  window.scrollTo(0, 0);
 });
