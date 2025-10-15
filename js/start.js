@@ -39,3 +39,9 @@ document.querySelectorAll('.artist-card form').forEach(form => {
         }, 1200);
     });
 });
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    // Si la page revient du cache, on "recharge" le script
+    window.location.reload();
+  }
+});
