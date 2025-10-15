@@ -1,7 +1,7 @@
 const ligne = document.getElementById('ligne-directrice');
 const walkingman = document.getElementById('walkingman');
 const etapes = document.querySelectorAll('.etape');
-const nbTirets = 300; // nombre de pointillés
+const nbTirets = 140; // nombre de pointillés
 let currentTiret = 0;
 let currentEtape = 0;
 
