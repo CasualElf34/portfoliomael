@@ -40,14 +40,17 @@ document.querySelectorAll('.artist-card form').forEach(form => {
     });
 });
 window.addEventListener('pageshow', () => {
-  // remet tout à zéro
-  walkingman.style.left = '0px';
-  walkingman.style.opacity = '1';
-  const ligne = document.getElementById('ligne-directrice');
-  if (ligne) {
-    ligne.innerHTML = '';
-    creerPointillets();
-    afficherPointilletsUnParUn(avancerEtape);
-  }
+  document.body.style.transform = 'none';
+  document.body.style.transition = 'none';
   window.scrollTo(0, 0);
+
+  // Si tu as un conteneur principal avec un effet de caméra :
+  const main = document.querySelector('.main-container');
+  if (main) {
+    main.style.transform = 'none';
+    main.style.transition = 'none';
+  }
+
+  // Tu peux aussi réinitialiser ton animation ici
+  if (typeof initAnimations === 'function') initAnimations();
 });
